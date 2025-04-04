@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shell
+  namespace: shell
+  labels:
+    app: shell
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shell
+  template:
+    metadata:
+      labels:
+        app: shell
+    spec:
+      containers:
+      - name: shell
+        # Image name to use when building locally
+        image: shell:latest 
+        # Set pull policy to Never for local images
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+        resources: {} 

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-gateway
+  namespace: nginx
+  labels:
+    app: nginx-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-gateway
+  template:
+    metadata:
+      labels:
+        app: nginx-gateway
+    spec:
+      containers:
+      - name: nginx-gateway
+        # Image name to use when building locally
+        image: nginx-gateway:latest 
+        # Set pull policy to Never for local images
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+        resources: {}

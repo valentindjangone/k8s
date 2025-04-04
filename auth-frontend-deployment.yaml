@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-frontend
+  namespace: auth
+  labels:
+    app: auth-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-frontend
+  template:
+    metadata:
+      labels:
+        app: auth-frontend
+    spec:
+      containers:
+      - name: auth-frontend
+        # Image name to use when building locally
+        image: auth-frontend:latest 
+        # Set pull policy to Never for local images
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+        resources: {} 
